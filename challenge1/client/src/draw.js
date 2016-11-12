@@ -1,4 +1,4 @@
-export const drawSquare = (position, fillstyle="red", mult=20) => {
+export const drawSquare = (position, fillstyle="green", mult=20) => {
 	const canvas = document.getElementById("canvas");
 	const ctx = canvas.getContext('2d');
 	ctx.fillStyle = fillstyle;
