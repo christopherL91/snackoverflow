@@ -21,7 +21,8 @@ export default (config) => {
         const parse = command(game);
         ctx.websocket.on('message', message => {
             try{
-                parse(message);
+                const data = parse(JSON.parse(message));
+                ctx.websocket.send(JSON.stringify(data));
             }catch(error) {
                 console.log(error);
                 const msg = JSON.stringify({msg: 'Bad Command'});
