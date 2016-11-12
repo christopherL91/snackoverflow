@@ -1,11 +1,5 @@
 'use strict';
 
-import 'whatwg-fetch';
-
-console.log('hello world');
-
-const serverURL `http://${addr}`;
-
 const statusOK = (response) => {
 	if(response.status >= 200 && response.status < 300) {
 		return response.json();
@@ -14,20 +8,34 @@ const statusOK = (response) => {
 	}
 };
 
-const getData = (url, data) => {
+const getData = (url) => {
 	return fetch(url, {
-	  	method: "POST",
-	  	body: JSON.stringify(data),
+	  	method: "GET",
 	  	headers: {
 	    	"Content-Type": "application/json"
 	  	}
 	})
 	.then(response => statusOK(response))
-	.catch(function(ex) {
-	    console.log('parsing failed', ex)
+	.catch(error => {
+	    console.log(`Error: ${error}`);
 	});
 };
 
-getData('http://localhost:3000', {
+getData('http://localhost:3000')
+.then(data => {
+	let dungeonmap = '';
+	const {Area} = data;
 
-}).then(data => console.log(data));
+    for (let i = 0; i < Area.length; i++) {
+		for (let j = 0; j < Area[i].length; j++) {
+			if(Area[i][j] == 1) {
+				dungeonmap += 'X';
+			} else {
+				dungeonmap += 'o';
+			}
+		}
+		dungeonmap += "<br/>";
+	}
+    const node = document.getElementById('map');
+    node.innerHTML = dungeonmap;
+});
