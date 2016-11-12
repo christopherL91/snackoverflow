@@ -7,14 +7,14 @@ export default (size = [50,50]) => {
         size,
         rooms: {
             initial: {
-                min_size: [1, 1],
-                max_size: [1, 1],
+                min_size: [2, 3],
+                max_size: [5, 6],
                 max_exits: 1,
                 position: [0, 0]
             },
             any: {
-                min_size: [1, 1],
-                max_size: [1, 1],
+                min_size: [2, 3],
+                max_size: [5, 6],
                 max_exits: 4
             }
         },
