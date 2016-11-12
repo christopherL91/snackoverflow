@@ -10,6 +10,7 @@ export default class {
         this.data = data;
     }
 
+
     getDungeon() {
         return this.dungeon;
     }
@@ -19,9 +20,14 @@ export default class {
     }
 
     createCharacter(name, position) {
+        //keep walking sideways down until free space.
+        let [x, y] = [0, 0];
+        while(this.dungeon.walls.get([x, y])) {
+            x++; y++;
+        }
         this.entities.push({
             name,
-            position: [10,10], //TODO: move us if we start in a wall
+            position: [x, y], //TODO: move us if we start in a wall
         });
     }
 
