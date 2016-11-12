@@ -27,7 +27,7 @@ export default (size = [50,50], room_count = 10) => {
         room_count,
     });
 
-    dungeon.generate();
+    dungeon.generate(); // FUCK YOU!!!!!
     const [x,y] = dungeon.size;
     let data = new Array(y);
     for (let i = 0; i < y; i++) {
@@ -43,5 +43,5 @@ export default (size = [50,50], room_count = 10) => {
             }
         }
     }
-    return data;
+    return {data, dungeon};
 };
