@@ -29,7 +29,7 @@ getData('http://localhost:3000').then(data => {
 			if (Area[i][j] == 1) {
 				dungeonmap += 'X';
 			} else {
-				dungeonmap += 'o';
+				dungeonmap += 'O';
 			}
 		}
 		dungeonmap += "<br/>";
