@@ -28,6 +28,7 @@ export default class {
         this.entities.push({
             name,
             position: [x, y], //TODO: move us if we start in a wall
+            latestMove: new Date()
         });
     }
 
@@ -49,6 +50,11 @@ export default class {
 
     move(name, position) {
         const character = this.getEntity(name);
+        const now = new Date();
+        if ((now - character.latestMove) < 500) {
+            return; //fuck you.
+        }
+        character.latestMove = now; //update latest move
         const [dx, dy] = position;
         const [x,y] = character.position;
         const tmppos = this.forceInbounds([x + dx, y + dy]);
