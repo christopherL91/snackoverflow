@@ -9,11 +9,12 @@ import monitor from 'koa-monitor';
 import helmet from 'koa-helmet';
 import compress from 'koa-compress';
 import cors from 'kcors';``
+import websockify from 'koa-websocket';
 
 import Public from './routes/public.js';
 
 export default (config) => {
-    const app = new Koa();
+    const app = websockify(new Koa());
 
     app.use(async(ctx, next) => {
         try {
@@ -38,15 +39,17 @@ export default (config) => {
 
     //  Public router
     const open = Public(config);
-    const server = http.createServer(app.callback());
+    //const server = http.createServer(app.callback());
 
     app.use(convert(cors()));
     app.use(helmet());
     app.use(compress());
-    app.use(convert(monitor(server, {path: '/status'})));
+    //app.use(convert(monitor(server, {path: '/status'})));
     app.use(bodyParser());
     app.use(logger);
     app.use(open.routes());
     app.use(open.allowedMethods());
-    return server;
+    app.ws.use(open.routes());
+    app.ws.use(open.allowedMethods());
+    return app;
 };

@@ -13,5 +13,12 @@ export default (config) => {
         const data = dungeon([50,50], rooms);
         ctx.body = {Area: data};
     });
+
+    router.get('/ws', async ctx => {
+        ctx.websocket.send('Hello World');
+        ctx.websocket.on('message', message => {
+            console.log(message);
+        });
+    });
     return router;
 };
