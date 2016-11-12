@@ -2,7 +2,7 @@
 
 import Dungeon from 'dungeon-generator';
 
-export default (size = [50,50]) => {
+export default (size = [50,50], room_count = 10) => {
     const dungeon = new Dungeon({
         size,
         rooms: {
@@ -19,12 +19,12 @@ export default (size = [50,50]) => {
             }
         },
         max_corridor_length: 6,
-        min_corridor_length: 2,
+        min_corridor_length: 1,
         corridor_density: 0.5,
-        symmetric_rooms: false,
-        interconnects: 1,
+        symmetric_rooms: true,
+        interconnects: 0,
         max_interconnect_length: 10,
-        room_count: 10
+        room_count,
     });
 
     dungeon.generate();
