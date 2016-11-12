@@ -46,5 +46,6 @@ document.onkeypress = function(e) {
 		sendCommand(scanCommand(playerName))
   	} else if (key === 'k') {
 		sendCommand(createCommand(playerName))
+		drawDude(sendCommand(scanCommand(playerName)));
   	} 
 };

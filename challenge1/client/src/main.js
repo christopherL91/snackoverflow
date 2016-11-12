@@ -23,6 +23,14 @@ const getData = (url) => {
 	});
 };
 
+const drawDude = (position, mult=20) => {
+	let canvas = document.getElementById("canvas");
+	let ctx = canvas.getContext('2d');
+	ctx.fillStyle = "red";
+	const [x, y] = position;
+	ctx.fillRect(x, y, mult, mult);
+}
+
 getData('http://localhost:3000')
 .then(data => {
 	let dungeonmap = '';
@@ -30,11 +38,11 @@ getData('http://localhost:3000')
 	let canvas = document.getElementById("canvas");  
 	const width = Area.length;
 	const height = Area[1].length;
-	const mult = 10;
-	canvas.width = width*mult;
-	canvas.height = height*mult;
+	const mult = 20;
+	canvas.setAttribute('width', width*mult);
+	canvas.setAttribute('height', height*mult);
 	let ctx = canvas.getContext('2d');
-	ctx.fillRect(0, 0, canvas.width, canvas.height);
+	ctx.fillRect(0, 0, width*mult, height*mult);
 
     for (let i = 0; i < width; i++) {
 		for (let j = 0; j < height; j++) {
