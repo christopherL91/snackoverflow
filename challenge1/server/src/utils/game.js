@@ -4,7 +4,7 @@ import Dungeon from '../utils/dungeon.js';
 
 export default class {
     constructor(args) {
-        const {dungeon, data} = Dungeon(); 
+        const {dungeon, data} = Dungeon();
         this.entities = [];
         this.dungeon = dungeon;
         this.data = data;
@@ -70,6 +70,6 @@ export default class {
         return {
             postition: [x,y],
             entities: data,
-        ;}
+        };
     }
 };
