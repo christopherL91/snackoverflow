@@ -42,15 +42,15 @@ process.stdin.on('keypress', function (ch, key) {
 		sendCommand(moveCommand('INSERT_CHAR_NAME', -1, 0))
   	} else if (key && key.name == 'd') {
 		sendCommand(moveCommand('INSERT_CHAR_NAME', 1, 0))
-  	} else if (key && key.name == '<') {
-		sendCommand(moveCommand('INSERT_CHAR_NAME', -1, 1))
   	} else if (key && key.name == 'z') {
-		sendCommand(moveCommand('INSERT_CHAR_NAME', 0, 1))
+		sendCommand(moveCommand('INSERT_CHAR_NAME', -1, 1))
   	} else if (key && key.name == 'x') {
+		sendCommand(moveCommand('INSERT_CHAR_NAME', 0, 1))
+  	} else if (key && key.name == 'c') {
 		sendCommand(moveCommand('INSERT_CHAR_NAME', 1, 1))
   	} else if (key && key.name == 's') {
 		sendCommand(scanCommand('INSERT_CHAR_NAME'))
-  	} else if (key && key.name == 'c') {
+  	} else if (key && key.name == 'k') {
 		sendCommand(createCommand('INSERT_CHAR_NAME'))
   	} 
 });
