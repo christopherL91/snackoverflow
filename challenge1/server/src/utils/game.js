@@ -45,8 +45,12 @@ export default class {
         const character = this.getEntity(name);
         const [dx, dy] = position;
         const [x,y] = character.position;
-        character.position = this.forceInbounds([x + dx, y + dy]);
-        console.log(this.entities); //Check if changed.
+        const tmppos = this.forceInbounds([x + dx, y + dy]);
+        //Check if we are trying to move into a wall. Then just give up.
+        if (!this.dungeon.walls.get(tmppos)) {
+            //We are going not going to end up in a wall
+            character.position = tmppos;
+        }
     }
 
     scan(name) {
