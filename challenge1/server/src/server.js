@@ -14,9 +14,9 @@ const addr = `${BIND}:${PORT}`;
 //  Pass data to routes
 const config = {};
 
-const server = App(config);
+const app = App(config);
 
-server.listen({port: PORT, host: BIND}, () => {
+app.listen({port: PORT, host: BIND}, () => {
     const format = chalk.blue;
     const msg = `[Server]: Started on ${addr}`;
     console.log(`${format(msg)}`);
