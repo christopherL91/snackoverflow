@@ -57,6 +57,9 @@ export default class {
             const [withinX, withinY] = ent.position;
             data.push({name, x: withinX, y: withinY});
         });
-        return data;
+        return {
+            postition: [x,y],
+            entities: data,
+        ;}
     }
 };
