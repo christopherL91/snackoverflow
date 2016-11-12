@@ -70,6 +70,7 @@ export default class {
         return {
             postition: [x,y],
             entities: data,
+            data: this.data
         };
     }
 };

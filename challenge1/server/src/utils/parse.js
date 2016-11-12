@@ -7,7 +7,7 @@ export default (game) => (message) => {
     switch(command) {
         case 'move':
             const {dx, dy} = message;
-            game.move({name, position: [dx, dy]});
+            game.move(name, [dx, dy]);
             break;
         case 'create':
             game.createCharacter(message.name);

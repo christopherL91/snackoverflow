@@ -22,12 +22,14 @@ const scanCommand = CharName => {
 };
 
 const listenCommands = (emitter, socket) => {
-    socket.on('message', data => {
-        emitter.emit('scan', data);
-    });
+    socket.onmessage = ({data}) => {
+    	console.log(data);
+        emitter.emit('scan', JSON.parse(data));
+    };
 };
 
 export const setupKeyEvents= (emitter, socket) => {
+	listenCommands(emitter, socket);
 	// listen for the "keypress" event
 	document.onkeypress = function(e) {
 		const charCode = (typeof e.which == "number") ? e.which : e.keyCode;
@@ -35,24 +37,33 @@ export const setupKeyEvents= (emitter, socket) => {
 		let playerName = 'ducky';
 	  	if (key == 'q') {
 			sendCommand(socket, moveCommand(playerName, -1, -1))
+			sendCommand(socket, scanCommand(playerName))
 	  	} else if (key === 'w') {
 			sendCommand(socket, moveCommand(playerName, 0, -1))
+			sendCommand(socket, scanCommand(playerName))
 	  	} else if (key === 'e') {
 			sendCommand(socket, moveCommand(playerName, 1, -1))
+			sendCommand(socket, scanCommand(playerName))
 	  	} else if (key === 'a') {
 			sendCommand(socket, moveCommand(playerName, -1, 0))
+			sendCommand(socket, scanCommand(playerName))
 	  	} else if (key === 'd') {
 			sendCommand(socket, moveCommand(playerName, 1, 0))
+			sendCommand(socket, scanCommand(playerName))
 	  	} else if (key === 'z') {
 			sendCommand(socket, moveCommand(playerName, -1, 1))
+			sendCommand(socket, scanCommand(playerName))
 	  	} else if (key === 'x') {
 			sendCommand(socket, moveCommand(playerName, 0, 1))
+			sendCommand(socket, scanCommand(playerName))
 	  	} else if (key === 'c') {
 			sendCommand(socket, moveCommand(playerName, 1, 1))
+			sendCommand(socket, scanCommand(playerName))
 	  	} else if (key === 's') {
 			sendCommand(socket, scanCommand(playerName))
 	  	} else if (key === 'k') {
 			sendCommand(socket, createCommand(playerName))
+			sendCommand(socket, scanCommand(playerName))
 	  	}
 	};
 };

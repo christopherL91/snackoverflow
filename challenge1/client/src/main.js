@@ -2,7 +2,7 @@
 
 import {setupKeyEvents} from './commands.js';
 import {getData} from './http.js';
-import {drawSquare} from './draw.js';
+import {drawSquare, drawNewMap} from './draw.js';
 import EventEmitter from 'events';
 
 const NAME = 'ducky';
@@ -13,13 +13,14 @@ const init = (url) => {
     const emitter = new EventEmitter();
 	setupKeyEvents(emitter, socket);
 
-    emitter.on('scan', entities => {
+    emitter.on('scan', ({entities, data}) => {
+    	drawNewMap(data);
         entities.forEach(ent => {
-            const {position} = ent;
+            const {x, y} = ent;
             if(ent.name !== NAME) {
-                drawSquare(postion, fillstyle='red');
+                drawSquare([x,y], fillstyle='red');
             } else {
-                drawSquare(postion);
+                drawSquare([x,y]);
             }
         });
     });
@@ -33,6 +34,8 @@ const init = (url) => {
 	getData(url)
 	.then(data => {
 		const {Area} = data;
+		drawNewMap(Area);
+		/*const {Area} = data;
 		let canvas = document.getElementById("canvas");
 		const width = Area.length;
 		const height = Area[1].length;
@@ -48,7 +51,7 @@ const init = (url) => {
 					ctx.clearRect(i*mult, j*mult, mult, mult);
 				}
 			}
-		}
+		}*/
 	});
 }
 
