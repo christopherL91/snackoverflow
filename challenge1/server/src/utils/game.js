@@ -10,7 +10,6 @@ export default class {
         this.data = data;
     }
 
-
     getDungeon() {
         return this.dungeon;
     }
@@ -21,14 +20,15 @@ export default class {
 
     createCharacter(name, position) {
         //keep walking sideways down until free space.
-        let [x, y] = [0, 0];
+        let [x, y] = [0, 0]; // Initial position
         while(this.dungeon.walls.get([x, y])) {
             x++; y++;
         }
+
         this.entities.push({
             name,
-            position: [x, y], //TODO: move us if we start in a wall
-            latestMove: new Date()
+            position: [x, y],
+            latestMove: new Date(),
         });
     }
 
@@ -67,6 +67,11 @@ export default class {
 
     scan(name) {
         const character = this.getEntity(name);
+        if (!character) {
+            const error = new Error('Character does not exists!');
+            error.status = 418;
+            throw error;
+        }
         const [x, y] = character.position;
         const topLeft = this.forceInbounds([x - 3, y - 3]);
         const bottomRight = this.forceInbounds([x + 3, y + 3]);
@@ -86,7 +91,7 @@ export default class {
         return {
             postition: [x,y],
             entities: data,
-            data: this.data
+            Area: this.data
         };
     }
 };

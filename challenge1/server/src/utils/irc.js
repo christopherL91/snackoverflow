@@ -7,13 +7,15 @@ export default (url) => {
 	const client = new irc.Client(url, 'snackOverflow', {
 		channels: ['#dungeon']
 	});
-	console.log("ipee", ipee.address());
+    const ip = ipee.address();
+	console.log(`Running on IP ${ip}`);
 	setInterval(() => {
 		client.say('#dungeon', JSON.stringify({
-			name: 'snackOverflow', 
-			address: ipee.address(), 
-			info: "not working atm"
+			name: 'snackOverflow',
+			address: `${ip}:3000`,
+			info: "Up and running, welcome! :)",
 		}));
 	}, 10000);
 
-}
+    process.on('SIGINT', () => client.disconnect());
+};

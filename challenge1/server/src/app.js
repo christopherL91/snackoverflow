@@ -15,11 +15,12 @@ import Public from './routes/public.js';
 import irc from './utils/irc.js';
 
 export default (config) => {
+
     try {
         irc("irc.leovegas.com");
     } catch(e) {
         console.log(e);
-        process.exit();
+        process.exit(-1);
     }
 
     const app = websockify(new Koa());
