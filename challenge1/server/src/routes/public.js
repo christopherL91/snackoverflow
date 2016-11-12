@@ -10,10 +10,9 @@ import Game from '../utils/game.js';
 export default (config) => {
     const router = new Router();
     const game = new Game();
+    const data = game.getData();
 
     router.get('/', async (ctx) => {
-        const rooms = getRandomNumber(4, 12);
-        const {data} = dungeon([50,50], rooms);
         ctx.body = {Area: data};
     });
 

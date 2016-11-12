@@ -1,11 +1,21 @@
 'use strict';
 
-import dungeon from '../utils/dungeon.js';
+import Dungeon from '../utils/dungeon.js';
 
 export default class {
     constructor(args) {
+        const {dungeon, data} = Dungeon(); 
         this.entities = [];
-        this.dungeon = dungeon().dungeon;
+        this.dungeon = dungeon;
+        this.data = data;
+    }
+
+    getDungeon() {
+        return this.dungeon;
+    }
+
+    getData() {
+        return this.data;
     }
 
     createCharacter(name, position) {
