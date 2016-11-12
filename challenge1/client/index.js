@@ -37,3 +37,4 @@ getData('http://localhost:3000').then(data => {
 	const node = document.getElementById('map');
 	node.innerHTML = dungeonmap;
 });
+
