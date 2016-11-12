@@ -31,26 +31,27 @@ keypress(process.stdin);
 
 // listen for the "keypress" event
 process.stdin.on('keypress', function (ch, key) {
+	let playerName = 'ducky';
   	console.log('got "keypress"', key);
   	if (key && key.name == 'q') {
-		sendCommand(moveCommand('INSERT_CHAR_NAME', -1, -1))
+		sendCommand(moveCommand(playerName, -1, -1))
   	} else if (key && key.name == 'w') {
-		sendCommand(moveCommand('INSERT_CHAR_NAME', 0, -1))
+		sendCommand(moveCommand(playerName, 0, -1))
   	} else if (key && key.name == 'e') {
-		sendCommand(moveCommand('INSERT_CHAR_NAME', 1, -1))
+		sendCommand(moveCommand(playerName, 1, -1))
   	} else if (key && key.name == 'a') {
-		sendCommand(moveCommand('INSERT_CHAR_NAME', -1, 0))
+		sendCommand(moveCommand(playerName, -1, 0))
   	} else if (key && key.name == 'd') {
-		sendCommand(moveCommand('INSERT_CHAR_NAME', 1, 0))
-  	} else if (key && key.name == '<') {
-		sendCommand(moveCommand('INSERT_CHAR_NAME', -1, 1))
+		sendCommand(moveCommand(playerName, 1, 0))
   	} else if (key && key.name == 'z') {
-		sendCommand(moveCommand('INSERT_CHAR_NAME', 0, 1))
+		sendCommand(moveCommand(playerName, -1, 1))
   	} else if (key && key.name == 'x') {
-		sendCommand(moveCommand('INSERT_CHAR_NAME', 1, 1))
-  	} else if (key && key.name == 's') {
-		sendCommand(scanCommand('INSERT_CHAR_NAME'))
+		sendCommand(moveCommand(playerName, 0, 1))
   	} else if (key && key.name == 'c') {
-		sendCommand(createCommand('INSERT_CHAR_NAME'))
+		sendCommand(moveCommand(playerName, 1, 1))
+  	} else if (key && key.name == 's') {
+		sendCommand(scanCommand(playerName))
+  	} else if (key && key.name == 'k') {
+		sendCommand(createCommand(playerName))
   	} 
 });
