@@ -38,3 +38,4 @@ getData('http://localhost:3000').then(data => {
 	node.innerHTML = dungeonmap;
 });
 
+}());
