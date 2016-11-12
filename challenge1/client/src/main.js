@@ -1,5 +1,7 @@
 'use strict';
 
+import './commands.js' 
+
 const statusOK = (response) => {
 	if(response.status >= 200 && response.status < 300) {
 		return response.json();

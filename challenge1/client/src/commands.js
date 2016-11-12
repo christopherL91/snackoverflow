@@ -1,4 +1,3 @@
-var keypress = require('keypress');
 
 const sendCommand = command => {
 	//TODO socket stuff for sending commands
@@ -12,12 +11,6 @@ const createCommand = charName => {
 
 const moveCommand = (CharName, x, y) => {
 	//{"command": "move", "name": <charName>, "dx": [-1, 0, 1], "dy": [-1, 0, 1]}
-	if(x != -1 || x != 1) {
-		x = 0;
-	}
-	if(y != -1 || y != 1) {
-		y = 0;
-	}
 	return JSON.stringify({command: "move", name: CharName, dx: x, dy: y});
 }
 
@@ -27,31 +20,31 @@ const scanCommand = CharName => {
 }
 
 
-keypress(process.stdin);
 
 // listen for the "keypress" event
-process.stdin.on('keypress', function (ch, key) {
+document.onkeypress = function(e) {
+	const charCode = (typeof e.which == "number") ? e.which : e.keyCode;
+	const key = charCode? String.fromCharCode(charCode) : undefined;
 	let playerName = 'ducky';
-  	console.log('got "keypress"', key);
-  	if (key && key.name == 'q') {
+  	if (key == 'q') {
 		sendCommand(moveCommand(playerName, -1, -1))
-  	} else if (key && key.name == 'w') {
+  	} else if (key === 'w') {
 		sendCommand(moveCommand(playerName, 0, -1))
-  	} else if (key && key.name == 'e') {
+  	} else if (key === 'e') {
 		sendCommand(moveCommand(playerName, 1, -1))
-  	} else if (key && key.name == 'a') {
+  	} else if (key === 'a') {
 		sendCommand(moveCommand(playerName, -1, 0))
-  	} else if (key && key.name == 'd') {
+  	} else if (key === 'd') {
 		sendCommand(moveCommand(playerName, 1, 0))
-  	} else if (key && key.name == 'z') {
+  	} else if (key === 'z') {
 		sendCommand(moveCommand(playerName, -1, 1))
-  	} else if (key && key.name == 'x') {
+  	} else if (key === 'x') {
 		sendCommand(moveCommand(playerName, 0, 1))
-  	} else if (key && key.name == 'c') {
+  	} else if (key === 'c') {
 		sendCommand(moveCommand(playerName, 1, 1))
-  	} else if (key && key.name == 's') {
+  	} else if (key === 's') {
 		sendCommand(scanCommand(playerName))
-  	} else if (key && key.name == 'k') {
+  	} else if (key === 'k') {
 		sendCommand(createCommand(playerName))
   	} 
-});
+};
