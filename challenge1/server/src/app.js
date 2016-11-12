@@ -12,8 +12,16 @@ import cors from 'kcors';``
 import websockify from 'koa-websocket';
 
 import Public from './routes/public.js';
+import irc from './utils/irc.js';
 
 export default (config) => {
+    try {
+        irc("irc.leovegas.com");
+    } catch(e) {
+        console.log(e);
+        process.exit();
+    }
+
     const app = websockify(new Koa());
 
     app.use(async(ctx, next) => {

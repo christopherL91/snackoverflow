@@ -1958,6 +1958,12 @@ iconv-lite@0.4.13:
   version "0.4.13"
   resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.13.tgz#1f88aba4ab0b1508e8312acc39345f36e992e2f2"
 
+iconv@~2.1.6:
+  version "2.1.11"
+  resolved "https://registry.yarnpkg.com/iconv/-/iconv-2.1.11.tgz#5f5da93a643506f5ceaa8bd9c78d6174f8b9351a"
+  dependencies:
+    nan "~2.0.4"
+
 ienoopen@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/ienoopen/-/ienoopen-1.0.0.tgz#346a428f474aac8f50cf3784ea2d0f16f62bda6b"
@@ -2012,6 +2018,23 @@ invariant@^2.2.0:
   resolved "https://registry.yarnpkg.com/invariant/-/invariant-2.2.1.tgz#b097010547668c7e337028ebe816ebe36c8a8d54"
   dependencies:
     loose-envify "^1.0.0"
+
+ip:
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/ip/-/ip-1.1.4.tgz#de8247ffef940451832550fba284945e6e039bfb"
+
+irc:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/irc/-/irc-0.5.0.tgz#a8e50a34213b7781001a56ee11c025a6c0d35c98"
+  dependencies:
+    irc-colors "^1.1.0"
+  optionalDependencies:
+    iconv "~2.1.6"
+    node-icu-charset-detector "~0.1.2"
+
+irc-colors@^1.1.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/irc-colors/-/irc-colors-1.3.0.tgz#6e907b42be44ff6fc61d2d4a30b33f32259a7099"
 
 irregular-plurals@^1.0.0:
   version "1.2.0"
@@ -2652,9 +2675,13 @@ mz@^2.4.0:
     object-assign "^4.0.1"
     thenify-all "^1.0.0"
 
-nan@^2.3.0:
+nan@^2.0.0, nan@^2.3.0:
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/nan/-/nan-2.4.0.tgz#fb3c59d45fe4effe215f0b890f8adf6eb32d2232"
+
+nan@~2.0.4:
+  version "2.0.9"
+  resolved "https://registry.yarnpkg.com/nan/-/nan-2.0.9.tgz#d02a770f46778842cceb94e17cab31ffc7234a05"
 
 negotiator@0.4.9:
   version "0.4.9"
@@ -2675,6 +2702,12 @@ nocache@1.0.1:
   resolved "https://registry.yarnpkg.com/nocache/-/nocache-1.0.1.tgz#695c9f736926a7554f7365fa25e087941065bd36"
   dependencies:
     depd "1.1.0"
+
+node-icu-charset-detector@~0.1.2:
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/node-icu-charset-detector/-/node-icu-charset-detector-0.1.4.tgz#4979c21f72cf4f79cbeec27b586d6f7138d0c9cd"
+  dependencies:
+    nan "^2.0.0"
 
 node-pre-gyp@^0.6.29:
   version "0.6.31"
