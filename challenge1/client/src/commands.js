@@ -1,26 +1,33 @@
+'use strict';
 
 const sendCommand = (socket, command) => {
 	//TODO socket stuff for sending commands
 	socket.send(command);
 	//console.log(command);
-}
+};
 
 const createCommand = charName => {
 	//{"command": "create", "name": <charName>}
 	return JSON.stringify({command: "create", name: charName})
-}
+};
 
 const moveCommand = (CharName, x, y) => {
 	//{"command": "move", "name": <charName>, "dx": [-1, 0, 1], "dy": [-1, 0, 1]}
 	return JSON.stringify({command: "move", name: CharName, dx: x, dy: y});
-}
+};
 
 const scanCommand = CharName => {
 	//{"command": "scan", "name": <charName>}
 	return JSON.stringify({command: "scan", name: CharName});
-}
+};
 
-export const setupKeyEvents= (socket) => {
+const listenCommands = (emitter, socket) => {
+    socket.on('message', data => {
+        emitter.emit('scan', data);
+    });
+};
+
+export const setupKeyEvents= (emitter, socket) => {
 	// listen for the "keypress" event
 	document.onkeypress = function(e) {
 		const charCode = (typeof e.which == "number") ? e.which : e.keyCode;
@@ -46,6 +53,6 @@ export const setupKeyEvents= (socket) => {
 			sendCommand(socket, scanCommand(playerName))
 	  	} else if (key === 'k') {
 			sendCommand(socket, createCommand(playerName))
-	  	} 
+	  	}
 	};
 };

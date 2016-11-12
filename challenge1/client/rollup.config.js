@@ -6,9 +6,11 @@ export default {
     entry: 'src/main.js',
     moduleName: 'snackoverflow',
     plugins: [
+        babel(),
         nodeResolve({
             jsnext: true,
             main: true,
+            preferBuiltins: false,
             browser: true,
             extensions: ['.js', '.json']
         }),
@@ -20,7 +22,6 @@ export default {
         }),
     ],
     format: 'iife',
-    plugins: [babel()],
     dest: 'index.js',
     sourceMap: 'inline',
 };
