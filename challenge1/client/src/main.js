@@ -8,14 +8,6 @@ const init = (url) => {
 	const socket = new WebSocket(socketUrl);
 	setupKeyEvents(socket);
 	
-	const drawDude = (position, mult=20) => {
-		let canvas = document.getElementById("canvas");
-		let ctx = canvas.getContext('2d');
-		ctx.fillStyle = "red";
-		const [x, y] = position;
-		ctx.fillRect(x, y, mult, mult);
-	}
-
 	getData(url)
 	.then(data => {
 		const {Area} = data;
